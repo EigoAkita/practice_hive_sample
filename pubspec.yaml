@@ -1,0 +1,43 @@
+name: practice_hive_sample
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  #HiveQLを使うためのpackage
+  hive: ^2.0.5
+  #Hiveの情報更新を検知してリビルドしてくれるWidget
+  hive_flutter: ^1.1.0
+  #状態管理　GetX
+  get: 4.3.8
+  #ログを吐く、ログを吐いた箇所を表示してくれる便利なpackage
+  simple_logger: ^1.9.0
+  #日本語表記にするためのpackage
+  intl: ^0.17.0
+  #Hiveを更に便利に使う為のジェネレーター
+  hive_generator: ^1.1.2
+  #ジェネレーターを使うためのpackage
+  build_runner: ^2.1.7
+  #fromJson,toJson関数を生成してくれるジェネレーター
+  json_serializable: ^6.1.4
+  #fromJson,toJson関数を作る為のジェネレーター用の設定を記述するのに使用
+  json_annotation: ^4.4.0
+  #copyWith関数を作るためのジェネレーター
+  copy_with_extension_gen: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
