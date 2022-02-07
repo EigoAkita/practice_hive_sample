@@ -15,26 +15,26 @@ class Article {
   String gender;
 
   @HiveField(2)
-  @JsonKey(name: 'image_url')
-  String imageUrl;
-
-  @HiveField(3)
   String title;
 
-  @HiveField(4)
+  @HiveField(3)
   String sentence;
 
-  @HiveField(5)
+  @HiveField(4)
   @JsonKey(name: 'is_favorite')
   bool isFavorite;
+
+  @HiveField(5)
+  @JsonKey(name: 'created_at')
+  String createdAt;
 
   Article({
     required this.name,
     required this.gender,
-    required this.imageUrl,
     required this.title,
     required this.sentence,
     required this.isFavorite,
+    required this.createdAt,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) =>

@@ -7,9 +7,9 @@ part of 'article.dart';
 // **************************************************************************
 
 abstract class _$ArticleCWProxy {
-  Article gender(String gender);
+  Article createdAt(String createdAt);
 
-  Article imageUrl(String imageUrl);
+  Article gender(String gender);
 
   Article isFavorite(bool isFavorite);
 
@@ -26,8 +26,8 @@ abstract class _$ArticleCWProxy {
   /// Article(...).copyWith(id: 12, name: "My name")
   /// ````
   Article call({
+    String? createdAt,
     String? gender,
-    String? imageUrl,
     bool? isFavorite,
     String? name,
     String? sentence,
@@ -42,10 +42,10 @@ class _$ArticleCWProxyImpl implements _$ArticleCWProxy {
   const _$ArticleCWProxyImpl(this._value);
 
   @override
-  Article gender(String gender) => this(gender: gender);
+  Article createdAt(String createdAt) => this(createdAt: createdAt);
 
   @override
-  Article imageUrl(String imageUrl) => this(imageUrl: imageUrl);
+  Article gender(String gender) => this(gender: gender);
 
   @override
   Article isFavorite(bool isFavorite) => this(isFavorite: isFavorite);
@@ -68,22 +68,22 @@ class _$ArticleCWProxyImpl implements _$ArticleCWProxy {
   /// Article(...).copyWith(id: 12, name: "My name")
   /// ````
   Article call({
+    Object? createdAt = const $CopyWithPlaceholder(),
     Object? gender = const $CopyWithPlaceholder(),
-    Object? imageUrl = const $CopyWithPlaceholder(),
     Object? isFavorite = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? sentence = const $CopyWithPlaceholder(),
     Object? title = const $CopyWithPlaceholder(),
   }) {
     return Article(
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as String,
       gender: gender == const $CopyWithPlaceholder()
           ? _value.gender
           // ignore: cast_nullable_to_non_nullable
           : gender as String,
-      imageUrl: imageUrl == const $CopyWithPlaceholder()
-          ? _value.imageUrl
-          // ignore: cast_nullable_to_non_nullable
-          : imageUrl as String,
       isFavorite: isFavorite == const $CopyWithPlaceholder()
           ? _value.isFavorite
           // ignore: cast_nullable_to_non_nullable
@@ -126,10 +126,10 @@ class ArticleAdapter extends TypeAdapter<Article> {
     return Article(
       name: fields[0] as String,
       gender: fields[1] as String,
-      imageUrl: fields[2] as String,
-      title: fields[3] as String,
-      sentence: fields[4] as String,
-      isFavorite: fields[5] as bool,
+      title: fields[2] as String,
+      sentence: fields[3] as String,
+      isFavorite: fields[4] as bool,
+      createdAt: fields[5] as String,
     );
   }
 
@@ -142,13 +142,13 @@ class ArticleAdapter extends TypeAdapter<Article> {
       ..writeByte(1)
       ..write(obj.gender)
       ..writeByte(2)
-      ..write(obj.imageUrl)
-      ..writeByte(3)
       ..write(obj.title)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.sentence)
+      ..writeByte(4)
+      ..write(obj.isFavorite)
       ..writeByte(5)
-      ..write(obj.isFavorite);
+      ..write(obj.createdAt);
   }
 
   @override
@@ -169,17 +169,17 @@ class ArticleAdapter extends TypeAdapter<Article> {
 Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
       name: json['name'] as String,
       gender: json['gender'] as String,
-      imageUrl: json['image_url'] as String,
       title: json['title'] as String,
       sentence: json['sentence'] as String,
       isFavorite: json['is_favorite'] as bool,
+      createdAt: json['created_at'] as String,
     );
 
 Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
       'name': instance.name,
       'gender': instance.gender,
-      'image_url': instance.imageUrl,
       'title': instance.title,
       'sentence': instance.sentence,
       'is_favorite': instance.isFavorite,
+      'created_at': instance.createdAt,
     };
