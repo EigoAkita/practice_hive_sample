@@ -28,6 +28,9 @@ class Article {
   @JsonKey(name: 'created_at')
   String createdAt;
 
+  @HiveField(6)
+  int id;
+
   Article({
     required this.name,
     required this.gender,
@@ -35,6 +38,7 @@ class Article {
     required this.sentence,
     required this.isFavorite,
     required this.createdAt,
+    required this.id,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) =>

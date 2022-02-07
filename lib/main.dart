@@ -80,7 +80,14 @@ class MyHomePage extends StatelessWidget {
               itemBuilder: (context, i) {
                 ///getAtで存在しているレコードを降順で表示
                 ///昇順(古い順)は本来の順番(1.2.3....)降順(新しい順)は(5.4.3....)
-                Article _article = box.getAt(i);
+                List<dynamic> _articleList = box.values.toList();
+                _articleList.sort(
+                  (a, b) {
+                    logger.info(b.createdAt.compareTo(a.createdAt));
+                    return b.createdAt.compareTo(a.createdAt);
+                  },
+                );
+                Article _article = _articleList[i];
 
                 ///toJsonでクラスの中身を簡単に表示
                 logger.info(_article.toJson());
@@ -116,8 +123,8 @@ class MyHomePage extends StatelessWidget {
                                       onTap: () {
                                         ///情報の更新処理
                                         ///copyWith使用で最小限の記述を実現
-                                        box.putAt(
-                                          i,
+                                        box.put(
+                                          _article.id,
                                           _article.copyWith(
                                             isFavorite: !_article.isFavorite,
                                           ),
@@ -137,7 +144,7 @@ class MyHomePage extends StatelessWidget {
                                     ),
                                     child: InkWell(
                                       onTap: () {
-                                        box.deleteAt(i);
+                                        box.delete(_article.id);
                                       },
                                       child: Icon(
                                         CupertinoIcons.delete_solid,

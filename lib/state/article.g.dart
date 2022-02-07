@@ -11,6 +11,8 @@ abstract class _$ArticleCWProxy {
 
   Article gender(String gender);
 
+  Article id(int id);
+
   Article isFavorite(bool isFavorite);
 
   Article name(String name);
@@ -28,6 +30,7 @@ abstract class _$ArticleCWProxy {
   Article call({
     String? createdAt,
     String? gender,
+    int? id,
     bool? isFavorite,
     String? name,
     String? sentence,
@@ -46,6 +49,9 @@ class _$ArticleCWProxyImpl implements _$ArticleCWProxy {
 
   @override
   Article gender(String gender) => this(gender: gender);
+
+  @override
+  Article id(int id) => this(id: id);
 
   @override
   Article isFavorite(bool isFavorite) => this(isFavorite: isFavorite);
@@ -70,6 +76,7 @@ class _$ArticleCWProxyImpl implements _$ArticleCWProxy {
   Article call({
     Object? createdAt = const $CopyWithPlaceholder(),
     Object? gender = const $CopyWithPlaceholder(),
+    Object? id = const $CopyWithPlaceholder(),
     Object? isFavorite = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? sentence = const $CopyWithPlaceholder(),
@@ -84,6 +91,10 @@ class _$ArticleCWProxyImpl implements _$ArticleCWProxy {
           ? _value.gender
           // ignore: cast_nullable_to_non_nullable
           : gender as String,
+      id: id == const $CopyWithPlaceholder()
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as int,
       isFavorite: isFavorite == const $CopyWithPlaceholder()
           ? _value.isFavorite
           // ignore: cast_nullable_to_non_nullable
@@ -130,13 +141,14 @@ class ArticleAdapter extends TypeAdapter<Article> {
       sentence: fields[3] as String,
       isFavorite: fields[4] as bool,
       createdAt: fields[5] as String,
+      id: fields[6] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Article obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -148,7 +160,9 @@ class ArticleAdapter extends TypeAdapter<Article> {
       ..writeByte(4)
       ..write(obj.isFavorite)
       ..writeByte(5)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(6)
+      ..write(obj.id);
   }
 
   @override
@@ -173,6 +187,7 @@ Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
       sentence: json['sentence'] as String,
       isFavorite: json['is_favorite'] as bool,
       createdAt: json['created_at'] as String,
+      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
@@ -182,4 +197,5 @@ Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
       'sentence': instance.sentence,
       'is_favorite': instance.isFavorite,
       'created_at': instance.createdAt,
+      'id': instance.id,
     };

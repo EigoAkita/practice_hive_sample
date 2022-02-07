@@ -82,7 +82,8 @@ class ArticlePostingPage extends StatelessWidget {
                         } else {
                           ///HIVEにデータを追加
                           var articleBox = Hive.box('articleBox');
-                          articleBox.add(
+                          articleBox.put(
+                            articleBox.length,
                             Article(
                               name: _nameController.text,
                               gender: _genderController.text,
@@ -90,6 +91,7 @@ class ArticlePostingPage extends StatelessWidget {
                               sentence: _sentenceController.text,
                               isFavorite: false,
                               createdAt: getNowDateTime(),
+                              id: articleBox.length,
                             ),
                           );
 
